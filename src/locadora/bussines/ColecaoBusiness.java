@@ -5,7 +5,7 @@ import java.util.List;
 import locadora.entity.Colecao;
 
 public class ColecaoBusiness {
-    public void cadastraColecao(String titulo, Double valor, List<Colecao> colecoes) throws Exception {
+    public boolean cadastraColecao(String titulo, Double valor, List<Colecao> colecoes) throws Exception {
         if ( !isColecaoValido(titulo, valor) )
             throw new Exception("Dados inválidos");
 
@@ -15,12 +15,13 @@ public class ColecaoBusiness {
         colecao.setValor( valor );
 
         colecoes.add(colecao);
+        return true;
     }
 
     private boolean isColecaoValido(String titulo, Double valor){
         if (titulo.equals( "" ))
             return false;
-        if (valor.equals( "" ))
+        if (!valor.equals( 200.0 ))
             return false;
 
         return true;
