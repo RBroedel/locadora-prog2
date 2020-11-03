@@ -34,12 +34,8 @@ public class Application {
 					break;
 				case 3: 
 					try {
-						if (colecaoMenu.cadastraColecao(colecoes) == true){
-							System.out.println("Colecao cadastrada com sucesso!");
-						} else {
-							System.out.println("Colecao nao foi cadastrada com sucesso");
-						}
-					} catch (Exception e) {
+						colecaoMenu.cadastraColecao(colecoes);
+					}catch(Exception e){
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
@@ -47,6 +43,5 @@ public class Application {
 					break;
 			}
 
-		} while( opt != 1 );
-	}
-}
+		}while(opt!=1);
+}}

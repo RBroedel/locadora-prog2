@@ -7,7 +7,7 @@ public class Aluguel {
     private long id;
     private long idCliente;
     private Date dataAluguel;
-    private Date dataDevolução;
+    private Date dataDevolucao;
     private Double valor;
     private List<Long> itens;
 
@@ -29,11 +29,11 @@ public class Aluguel {
 	public void setDataAluguel(Date dataAluguel) {
 		this.dataAluguel = dataAluguel;
 	}
-	public Date getDataDevolução() {
-		return dataDevolução;
+	public Date getDataDevolucao() {
+		return dataDevolucao;
 	}
-	public void setDataDevolução(Date dataDevolução) {
-		this.dataDevolução = dataDevolução;
+	public void setDataDevolucao(Date dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
 	}
 	public Double getValor() {
 		return valor;
@@ -50,11 +50,11 @@ public class Aluguel {
         this.itens = itens;
     }
 
-    public Aluguel(long id, long idCliente, Date dataAluguel, Date dataDevolução, Double valor, List<Long> itens) {
+    public Aluguel(long id, long idCliente, Date dataAluguel, Date dataDevolucao, Double valor, List<Long> itens) {
         this.id = id;
         this.idCliente = idCliente;
         this.dataAluguel = dataAluguel;
-        this.dataDevolução = dataDevolução;
+        this.dataDevolucao = dataDevolucao;
         this.valor = valor;
         this.itens = itens;
     }

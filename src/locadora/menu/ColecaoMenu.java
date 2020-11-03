@@ -8,13 +8,16 @@ import locadora.entity.Colecao;
 
 public class ColecaoMenu {
     ColecaoBusiness colecaobussines = new ColecaoBusiness();
-    Scanner sc1 = new Scanner (System.in);
+    Scanner sc1 = new Scanner(System.in);
 
-    public boolean cadastraColecao( List<Colecao> colecoes ) throws Exception {
+    public void cadastraColecao(List<Colecao> colecoes) throws Exception {
         System.out.println("Informa o Titulo da colecao: ");
         String titulo = sc1.nextLine();
 
-        return colecaobussines.cadastraColecao (titulo, colecoes);
+        if (colecaobussines.cadastraColecao(titulo, colecoes))
+            System.out.println("Colecao cadastrada com sucesso!");
+        else
+            System.out.println("Colecao nao foi cadastrada com sucesso");
     }
 
 }
