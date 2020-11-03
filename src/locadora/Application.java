@@ -23,7 +23,10 @@ public class Application {
 			switch ( opt ) {
 				case 2:
 					try {
-						clienteMenu.cadastraCliente( clientes );
+						if( clienteMenu.cadastraCliente( clientes ) )
+							System.out.println( "Usuário salvo com sucesso!" );
+						else
+							System.out.println( "Não foi possível salvar o Usuário!" );
 					} catch ( Exception e ) {
 						System.out.println( e.getLocalizedMessage() );
 					}
