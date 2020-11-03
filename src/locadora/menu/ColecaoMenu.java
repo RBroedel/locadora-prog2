@@ -11,13 +11,10 @@ public class ColecaoMenu {
     Scanner sc1 = new Scanner (System.in);
 
     public boolean cadastraColecao( List<Colecao> colecoes ) throws Exception {
-        System.out.print("Informa o Titulo da colecao: ");
+        System.out.println("Informa o Titulo da colecao: ");
         String titulo = sc1.nextLine();
 
-        System.out.print("Informe o valor da colecao: ");
-        Double valor = sc1.nextDouble();
-
-        return colecaobussines.cadastraColecao (titulo, valor, colecoes);
+        return colecaobussines.cadastraColecao (titulo, colecoes);
     }
 
 }

@@ -21,7 +21,7 @@ public class Application {
 		Scanner sc1 = new Scanner( System.in );
 
 		do {
-			System.out.println( "1 - sair; 2 - Cadastrar Cliente; 3 - Cdastrar Colecao;" );
+			System.out.println( "1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao;" );
 			opt = sc1.nextInt();
 
 			switch ( opt ) {
@@ -35,9 +35,9 @@ public class Application {
 				case 3: 
 					try {
 						if (colecaoMenu.cadastraColecao(colecoes) == true){
-							System.out.print("Colecao cadastrada com sucesso!");
+							System.out.println("Colecao cadastrada com sucesso!");
 						} else {
-							System.out.print("Colecao nao foi cadastrada com sucesso");
+							System.out.println("Colecao nao foi cadastrada com sucesso");
 						}
 					} catch (Exception e) {
 						System.out.println(e.getLocalizedMessage());

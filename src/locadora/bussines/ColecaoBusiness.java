@@ -5,23 +5,22 @@ import java.util.List;
 import locadora.entity.Colecao;
 
 public class ColecaoBusiness {
-    public boolean cadastraColecao(String titulo, Double valor, List<Colecao> colecoes) throws Exception {
-        if ( !isColecaoValido(titulo, valor) )
+    private static final Double VALOR = 200.0;
+    public boolean cadastraColecao(String titulo, List<Colecao> colecoes) throws Exception {
+        if ( !isColecaoValido(titulo) )
             throw new Exception("Dados inválidos");
 
         var colecao = new Colecao();
         colecao.setId( getLastId (colecoes) + 1);
         colecao.setTitulo( titulo );
-        colecao.setValor( valor );
+        colecao.setValor( VALOR );
 
         colecoes.add(colecao);
         return true;
     }
 
-    private boolean isColecaoValido(String titulo, Double valor){
+    private boolean isColecaoValido(String titulo){
         if (titulo.equals( "" ))
-            return false;
-        if (!valor.equals( 200.0 ))
             return false;
 
         return true;
