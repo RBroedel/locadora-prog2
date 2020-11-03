@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import locadora.entity.Cliente;
+import locadora.entity.Colecao;
 import locadora.menu.ClienteMenu;
+import locadora.menu.ColecaoMenu;
 
 public class Application {
 
@@ -13,11 +15,13 @@ public class Application {
 		int opt = 0;
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		ClienteMenu clienteMenu = new ClienteMenu();
+		List<Colecao> colecoes = new ArrayList<Colecao>();
+		ColecaoMenu colecaoMenu = new ColecaoMenu();
 
 		Scanner sc1 = new Scanner( System.in );
 
 		do {
-			System.out.print( "1 - sair; 2 - Cadastrar Cliente;" );
+			System.out.println( "1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao;" );
 			opt = sc1.nextInt();
 
 			switch ( opt ) {
@@ -29,6 +33,17 @@ public class Application {
 							System.out.println( "Não foi possível salvar o Usuário!" );
 					} catch ( Exception e ) {
 						System.out.println( e.getLocalizedMessage() );
+					}
+					break;
+				case 3: 
+					try {
+						if (colecaoMenu.cadastraColecao(colecoes) == true){
+							System.out.println("Colecao cadastrada com sucesso!");
+						} else {
+							System.out.println("Colecao nao foi cadastrada com sucesso");
+						}
+					} catch (Exception e) {
+						System.out.println(e.getLocalizedMessage());
 					}
 					break;
 				default:
