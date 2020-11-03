@@ -27,22 +27,15 @@ public class Application {
 			switch ( opt ) {
 				case 2:
 					try {
-						if( clienteMenu.cadastraCliente( clientes ) )
-							System.out.println( "Usuário salvo com sucesso!" );
-						else
-							System.out.println( "Não foi possível salvar o Usuário!" );
+						clienteMenu.cadastraCliente( clientes );
 					} catch ( Exception e ) {
 						System.out.println( e.getLocalizedMessage() );
 					}
 					break;
 				case 3: 
 					try {
-						if (colecaoMenu.cadastraColecao(colecoes) == true){
-							System.out.println("Colecao cadastrada com sucesso!");
-						} else {
-							System.out.println("Colecao nao foi cadastrada com sucesso");
-						}
-					} catch (Exception e) {
+						colecaoMenu.cadastraColecao(colecoes);
+					}catch(Exception e){
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
@@ -50,6 +43,5 @@ public class Application {
 					break;
 			}
 
-		} while( opt != 1 );
-	}
-}
+		}while(opt!=1);
+}}
