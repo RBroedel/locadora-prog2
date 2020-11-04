@@ -6,7 +6,7 @@ import locadora.entity.Cliente;
 
 public class ClienteBussines {
 
-	public void cadastraCliente( String nome, String telefone, String bairro, String vip, List<Cliente> clientes ) throws Exception {
+	public boolean cadastraCliente( String nome, String telefone, String bairro, String vip, List<Cliente> clientes ) throws Exception {
 		if( !isClienteValido( nome, telefone, bairro, vip ) )
 			throw new Exception( "Dados inválidos." );
 
@@ -18,6 +18,7 @@ public class ClienteBussines {
 		cliente.setVip( vip.equals( "sim" ) ? true : false );
 
 		clientes.add( cliente );
+		return true;
 	}
 
 	private boolean isClienteValido( String nome, String telefone, String bairro, String vip ) {

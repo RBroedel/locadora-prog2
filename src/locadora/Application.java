@@ -1,4 +1,4 @@
-  
+
 package locadora;
 
 import java.util.ArrayList;
@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import locadora.entity.Item;
-import locadora.enums.Tipo;
 import locadora.entity.Cliente;
+import locadora.entity.Colecao;
 import locadora.menu.ClienteMenu;
 import locadora.menu.ItemMenu;
+import locadora.menu.ColecaoMenu;
 
 public class Application {
 
@@ -19,11 +20,13 @@ public class Application {
 		ClienteMenu clienteMenu = new ClienteMenu();
 		List<Item> itens = new ArrayList<Item>();
 		ItemMenu itemMenu = new ItemMenu();
+		List<Colecao> colecoes = new ArrayList<Colecao>();
+		ColecaoMenu colecaoMenu = new ColecaoMenu();
 
 		Scanner sc1 = new Scanner( System.in );
 
 		do {
-			System.out.println( "1 - sair; 2 - Cadastrar Cliente; 4 - Cadastrar Livro;" );
+			System.out.println( "1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Livro;" );
 			opt = sc1.nextInt();
 
 			switch ( opt ) {
@@ -34,6 +37,14 @@ public class Application {
 						System.out.println( e.getLocalizedMessage() );
 					}
 					break;
+				
+				case 3: 
+					try {
+						colecaoMenu.cadastraColecao(colecoes);
+					}catch(Exception e){
+						System.out.println(e.getLocalizedMessage());
+					}
+					break;
 				case 4: 
 					try {
 						if (itemMenu.cadastraItem(itens) == true){
@@ -41,10 +52,9 @@ public class Application {
 						} else {
 							System.out.println("Livro nao foi cadastrado");
 						}
-					} catch (Exception e) {
+					} catch (Exception e){
 						System.out.println(e.getLocalizedMessage());
 					}
-					break;
 				default:
 					break;
 			}
