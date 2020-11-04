@@ -47,7 +47,7 @@ public class Application {
 					break;
 				case 4: 
 					try {
-						if (itemMenu.cadastraItem(itens) == true){
+						if (itemMenu.cadastraItem( itens, colecoes ) == true){
 							System.out.println("Livro cadastrado com sucesso!");
 						} else {
 							System.out.println("Livro nao foi cadastrado");
