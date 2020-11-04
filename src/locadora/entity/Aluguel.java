@@ -1,5 +1,5 @@
 package locadora.entity;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public class Aluguel {
@@ -48,16 +48,6 @@ public class Aluguel {
 
     public void setItens(List<Long> itens) {
         this.itens = itens;
-    }
-
-    public Aluguel(long id, long idCliente, Date dataAluguel, Date dataDevolucao, Double valor, List<Long> itens) {
-        this.id = id;
-        this.idCliente = idCliente;
-        this.dataAluguel = dataAluguel;
-        this.dataDevolucao = dataDevolucao;
-        this.valor = valor;
-        this.itens = itens;
-    }
-    
+    }    
 
 }
