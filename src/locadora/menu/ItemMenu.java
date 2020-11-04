@@ -11,12 +11,13 @@ import locadora.enums.Tipo;
 
 
 public class ItemMenu {
-    ItemBusiness Itembussines = new ItemBusiness();
+    ItemBusiness itembussines = new ItemBusiness();
     Scanner sc1 = new Scanner (System.in);
 
-    public boolean cadastraItem( List<Item> itens ,List<Colecao> colecoes) throws Exception {
+    public boolean cadastroItem( List<Item> itens ,List<Colecao> colecoes) throws Exception {
         System.out.println("Informa o Titulo: ");
-		String titulo = sc1.nextLine();
+        String titulo = sc1.nextLine();
+        
 
 		System.out.println("Informa o Tipo(1 - Livro; 2 - DVD; 3 - Revista) : ");
         int tipo = sc1.nextInt();
@@ -28,9 +29,11 @@ public class ItemMenu {
                 System.out.println(colecao.getId() + " - " + colecao.getTitulo());
             });
             idColecao = sc1.nextLong();
+            
         }
+        sc1.nextLine();
 
-        return Itembussines.cadastraItem (titulo, idColecao, tipo, itens, colecoes);
+        return itembussines.cadastraItem (titulo, idColecao, tipo, itens, colecoes);
     }
 
 }
