@@ -13,6 +13,7 @@ public class ItemBusiness {
 
     public boolean cadastraItem(String titulo, Long idColecao, int tipo, List<Item> itens, List<Colecao> colecoes)
             throws Exception {
+
         if (isItemValido(titulo, idColecao, tipo, colecoes))
             throw new Exception("Dados inválidos");
 
@@ -30,9 +31,13 @@ public class ItemBusiness {
     }
 
     private boolean isItemValido(String titulo, Long idColecao, int tipo, List<Colecao> colecoes) {
-        if (titulo.equals(""))
+        if (titulo.equals("")) {
             return false;
+        }
         if (Tipo.Dvd.getCode() != tipo || Tipo.Livro.getCode() != tipo || Tipo.Revista.getCode() != tipo) {
+            return false;
+        }
+        if (idColecao > colecoes.size() + 1 || idColecao < 0) {
             return false;
         }
         return true;

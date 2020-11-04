@@ -1,3 +1,4 @@
+
 package locadora;
 
 import java.util.ArrayList;
@@ -50,11 +51,10 @@ public class Application {
 					break;
 				case 4:
 					try {
-						if (itemMenu.cadastraItem(itens, colecoes) == true) {
-							System.out.println("Livro cadastrado com sucesso!");
-
+						if (itemMenu.cadastroItem(itens, colecoes) == true) {
+							System.out.println("Item cadastrado com sucesso!");
 						} else {
-							System.out.println("Livro nao foi cadastrado");
+							System.out.println("Item não foi cadastrado");
 						}
 					} catch (Exception e) {
 						System.out.println(e.getLocalizedMessage());
@@ -67,6 +67,7 @@ public class Application {
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
+
 				default:
 					break;
 			}

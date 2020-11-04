@@ -1,3 +1,4 @@
+
 package locadora.menu;
 
 import java.util.List;
@@ -9,10 +10,10 @@ import locadora.entity.Item;
 import locadora.enums.Tipo;
 
 public class ItemMenu {
-    ItemBusiness itemBussines = new ItemBusiness();
+    ItemBusiness itembussines = new ItemBusiness();
     Scanner sc1 = new Scanner(System.in);
 
-    public boolean cadastraItem(List<Item> itens, List<Colecao> colecoes) throws Exception {
+    public boolean cadastroItem(List<Item> itens, List<Colecao> colecoes) throws Exception {
         System.out.println("Informa o Titulo: ");
         String titulo = sc1.nextLine();
 
@@ -26,10 +27,11 @@ public class ItemMenu {
                 System.out.println(colecao.getId() + " - " + colecao.getTitulo());
             });
             idColecao = sc1.nextLong();
-            sc1.nextLine();
-        }
 
-        return itemBussines.cadastraItem(titulo, idColecao, tipo, itens, colecoes);
+        }
+        sc1.nextLine();
+
+        return itembussines.cadastraItem(titulo, idColecao, tipo, itens, colecoes);
     }
 
 }
