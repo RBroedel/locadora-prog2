@@ -31,7 +31,7 @@ public class ClienteMenu {
 			System.out.println("Não foi possível salvar o Usuário!");
 		}
 
-		sc1 = new Scanner( System.in );
+		sc1 = new Scanner(System.in);
 	}
 
 }

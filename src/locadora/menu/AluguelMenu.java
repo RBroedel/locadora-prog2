@@ -25,7 +25,6 @@ public class AluguelMenu {
         clientes.forEach(cliente -> System.out.print(cliente.getId() + " - " + cliente.getNome() + "\n"));
         System.out.print("\nEscolha o cliente: ");
         Long idCliente = sc1.nextLong();
-       
 
         for (Cliente cliente : clientes) {
             if (idCliente == cliente.getId() && cliente.isVip()) {
@@ -44,12 +43,10 @@ public class AluguelMenu {
 
         System.out.print("\nÉ para entregar em domicilio? 1 - sim; 2 - nao \n");
         Long entrega = sc1.nextLong();
-        if(entrega < 1 || entrega > 2){
+        if (entrega < 1 || entrega > 2) {
             throw new Exception("\nOpcao invalida!");
         }
 
-
-        
         while (opt == 1) {
             itens.forEach(item -> {
                 if (item.getEstoque() != 0)
@@ -71,7 +68,7 @@ public class AluguelMenu {
             System.out.print("\nDeseja adicionar outro item? 1 - Sim 2 - Nao\n");
             opt = sc1.nextInt();
         }
-        if (itensAluguel.size() == 0){
+        if (itensAluguel.size() == 0) {
             throw new Exception("\nNão há itens nesse aluguel");
         }
         if (aluguelBussines.cadastrarAluguel(idCliente, vip, bairroCentro, itensAluguel, alugueis, entrega))

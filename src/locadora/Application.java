@@ -14,9 +14,6 @@ import locadora.menu.ItemMenu;
 import locadora.menu.ColecaoMenu;
 import locadora.menu.CompraMenu;
 import locadora.entity.Aluguel;
-import locadora.menu.ClienteMenu;
-import locadora.menu.ItemMenu;
-import locadora.menu.ColecaoMenu;
 import locadora.menu.AluguelMenu;
 
 public class Application {
