@@ -65,6 +65,7 @@ public class Application {
 					try {
 						aluguelMenu.aluguel(aluguel, clientes, itens);
 					} catch (Exception e) {
+
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
@@ -79,7 +80,7 @@ public class Application {
 				default:
 					break;
 			}
-
-		} while (opt != 1);
+			sc1 = new Scanner( System.in );
+		} while( opt != 1 );
 	}
 }
