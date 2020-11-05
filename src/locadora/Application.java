@@ -13,6 +13,11 @@ import locadora.menu.ClienteMenu;
 import locadora.menu.ItemMenu;
 import locadora.menu.ColecaoMenu;
 import locadora.menu.CompraMenu;
+import locadora.entity.Aluguel;
+import locadora.menu.ClienteMenu;
+import locadora.menu.ItemMenu;
+import locadora.menu.ColecaoMenu;
+import locadora.menu.AluguelMenu;
 
 public class Application {
 
@@ -26,12 +31,14 @@ public class Application {
 		ColecaoMenu colecaoMenu = new ColecaoMenu();
 		List<Compra> compras = new ArrayList<Compra>();
 		CompraMenu compraMenu = new CompraMenu();
+		List<Aluguel> aluguel = new ArrayList<Aluguel>();
+		AluguelMenu aluguelMenu = new AluguelMenu();
 
 		Scanner sc1 = new Scanner(System.in);
 
 		do {
 			System.out.println(
-					"1 - Sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Item; 5 - Realizar Compras;");
+					"1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Livro; 5 - Realizar Compras; 6 - Aluguel de Item; 7 - Devolução de itens");
 			opt = sc1.nextInt();
 
 			switch (opt) {
@@ -59,6 +66,20 @@ public class Application {
 				case 5:
 					try {
 						compraMenu.compraItem(compras, clientes, itens);
+					} catch (Exception e) {
+						System.out.println(e.getLocalizedMessage());
+					}
+					break;
+				case 6:
+					try {
+						aluguelMenu.aluguel(aluguel, clientes, itens);
+					} catch (Exception e) {
+						System.out.println(e.getLocalizedMessage());
+					}
+					break;
+				case 7:
+					try {
+						aluguelMenu.devolucao(aluguel, clientes, itens);
 					} catch (Exception e) {
 						System.out.println(e.getLocalizedMessage());
 					}
