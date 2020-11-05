@@ -14,13 +14,16 @@ public class ItemBusiness {
     public boolean cadastraItem(String titulo, Long idColecao, int tipo, List<Item> itens, List<Colecao> colecoes)
             throws Exception {
 
-        if (isItemValido(titulo, idColecao, tipo, colecoes))
+        if (isItemValido(titulo, idColecao, tipo, colecoes)) {
             throw new Exception("Dados inválidos");
+        }
 
         var item = new Item();
         item.setId(getLastId(itens) + 1);
         item.setTitulo(titulo);
         item.setValor(retornaValorItem(tipo));
+        item.setEstoque(1L);
+        item.setTipo(retornaTipo(tipo));
 
         if (idColecao != 0) {
             item.setIdColecao(idColecao);
@@ -34,7 +37,7 @@ public class ItemBusiness {
         if (titulo.equals("")) {
             return false;
         }
-        if (Tipo.Dvd.getCode() != tipo || Tipo.Livro.getCode() != tipo || Tipo.Revista.getCode() != tipo) {
+        if (Tipo.DVD.getCode() != tipo || Tipo.LIVRO.getCode() != tipo || Tipo.REVISTA.getCode() != tipo) {
             return false;
         }
         if (idColecao > colecoes.size() + 1 || idColecao < 0) {
@@ -44,21 +47,31 @@ public class ItemBusiness {
     }
 
     private Double retornaValorItem(int tipo) {
-        if (Tipo.Dvd.getCode() == tipo) {
+        if (Tipo.DVD.getCode() == tipo) {
             return VALOR_DVD;
-        } else if (Tipo.Livro.getCode() == tipo) {
+        } else if (Tipo.LIVRO.getCode() == tipo) {
             return VALOR_LIVRO;
-        } else if (Tipo.Revista.getCode() == tipo) {
+        } else if (Tipo.REVISTA.getCode() == tipo) {
             return VALOR_REVISTA;
         }
         return 0.0;
     }
 
     private Long getLastId(List<Item> itens) {
-        if (itens.size() > 0)
+        if (itens.size() > 0) {
             return itens.get(itens.size() - 1).getId();
+        }
 
         return Long.parseLong("0");
+    }
+
+    private Tipo retornaTipo(int tipo) {
+        for (Tipo tipoEnum : Tipo.values()) {
+            if (tipoEnum.getCode() == tipo) {
+                return tipoEnum;
+            }
+        }
+        return Tipo.TIPO_INVALIDO;
     }
 
 }
