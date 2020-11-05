@@ -30,7 +30,8 @@ public class Application {
 		Scanner sc1 = new Scanner(System.in);
 
 		do {
-			System.out.println( "1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Livro; 6 - Aluguel de Item" );
+			System.out.println(
+					"1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Livro; 6 - Aluguel de Item; 7 - Devolução de itens");
 			opt = sc1.nextInt();
 
 			switch (opt) {
@@ -41,36 +42,44 @@ public class Application {
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
-				
-				case 3: 
+
+				case 3:
 					try {
 						colecaoMenu.cadastraColecao(colecoes);
 					} catch (Exception e) {
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
-				case 6:
+				case 4:
 					try {
-						aluguelMenu.aluguelBussines(aluguel, clientes, itens);
-					} catch (Exception e) {
-						System.out.println(e.getLocalizedMessage());
-					}
-					break;
-				case 4: 
-					try {
-						if (itemMenu.cadastroItem( itens, colecoes ) == true){
+						if (itemMenu.cadastroItem(itens, colecoes) == true) {
 							System.out.println("Item cadastrado com sucesso!");
 						} else {
 							System.out.println("Item não foi cadastrado");
 						}
-					} catch (Exception e){
+					} catch (Exception e) {
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
+				case 6:
+					try {
+						aluguelMenu.aluguel(aluguel, clientes, itens);
+					} catch (Exception e) {
+						System.out.println(e.getLocalizedMessage());
+					}
+					break;
+				case 7:
+					try {
+						aluguelMenu.devolucao(aluguel, clientes, itens);
+					} catch (Exception e) {
+						System.out.println(e.getLocalizedMessage());
+					}
+					break;
+
 				default:
 					break;
 			}
 
-		} while( opt != 1 );
+		} while (opt != 1);
 	}
 }

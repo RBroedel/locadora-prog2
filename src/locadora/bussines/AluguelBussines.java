@@ -6,23 +6,25 @@ import locadora.entity.Aluguel;
 
 public class AluguelBussines {
 
-    public boolean cadastrarAluguel( Long idCliente, boolean vip, boolean bairroCentro, List<Long> itens, List<Aluguel> alugueis) throws Exception{
-
+    public boolean cadastrarAluguel(Long idCliente, boolean vip, boolean bairroCentro, List<Long> itens,
+            List<Aluguel> alugueis, Long entrega) throws Exception {
         var aluguel = new Aluguel();
         LocalDate dataAluguel = LocalDate.now();
         LocalDate dataDevolucao = dataAluguel.plusDays(5);
         Double valor = 10.;
-        Double valorTotal = valor*itens.size();
-        if (vip){
-            valorTotal = valorTotal-(valorTotal*0.05);
-        };
-        if (bairroCentro){
-            valorTotal += 10.;
-        } else{
-            valorTotal += 15.;
+        Double valorTotal = valor * itens.size();
+        if (vip) {
+            valorTotal = valorTotal - (valorTotal * 0.05);
         }
-        aluguel.setId( getLastId( alugueis ) + 1 ); 
-        aluguel.setIdCliente( idCliente );
+        if (entrega == 1) {
+            if (bairroCentro) {
+                valorTotal += 10.;
+            } else {
+                valorTotal += 15.;
+            }
+        }
+        aluguel.setId(getLastId(alugueis) + 1);
+        aluguel.setIdCliente(idCliente);
         aluguel.setDataAluguel(dataAluguel);
         aluguel.setDataDevolucao(dataDevolucao);
         aluguel.setValor(valorTotal);
