@@ -26,7 +26,7 @@ public class Application {
 		Scanner sc1 = new Scanner( System.in );
 
 		do {
-			System.out.println( "1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Livro;" );
+			System.out.println( "1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Item;" );
 			opt = sc1.nextInt();
 
 			switch ( opt ) {
@@ -47,11 +47,7 @@ public class Application {
 					break;
 				case 4: 
 					try {
-						if (itemMenu.cadastroItem( itens, colecoes ) == true){
-							System.out.println("Item cadastrado com sucesso!");
-						} else {
-							System.out.println("Item não foi cadastrado");
-						}
+						itemMenu.cadastroItem( itens, colecoes );
 					} catch (Exception e){
 						System.out.println(e.getLocalizedMessage());
 					}
@@ -59,7 +55,7 @@ public class Application {
 				default:
 					break;
 			}
-
+			sc1 = new Scanner( System.in );
 		} while( opt != 1 );
 	}
 }

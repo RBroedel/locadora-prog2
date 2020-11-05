@@ -31,7 +31,7 @@ public class ClienteBussines {
 		if( bairro.equals( "" ) )
 			return false;
 
-		if( vip.equals( "" ) || !vip.equals( "sim" ) || vip.equals( "nao" ) )
+		if( vip.equals( "" ) || (!vip.equals( "sim" ) && !vip.equals( "nao" )))
 			return false;
 
 		return true;
