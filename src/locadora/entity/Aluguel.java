@@ -1,13 +1,15 @@
 package locadora.entity;
-import java.util.Date;
 import java.util.List;
+
+import java.time.LocalDate;
+
 
 public class Aluguel {
 
     private long id;
     private long idCliente;
-    private Date dataAluguel;
-    private Date dataDevolucao;
+    private LocalDate dataAluguel;
+    private LocalDate dataDevolucao;
     private Double valor;
     private List<Long> itens;
 
@@ -23,18 +25,6 @@ public class Aluguel {
 	public void setIdCliente(long idCliente) {
 		this.idCliente = idCliente;
 	}
-	public Date getDataAluguel() {
-		return dataAluguel;
-	}
-	public void setDataAluguel(Date dataAluguel) {
-		this.dataAluguel = dataAluguel;
-	}
-	public Date getDataDevolucao() {
-		return dataDevolucao;
-	}
-	public void setDataDevolucao(Date dataDevolucao) {
-		this.dataDevolucao = dataDevolucao;
-	}
 	public Double getValor() {
 		return valor;
 	}
@@ -48,6 +38,22 @@ public class Aluguel {
 
     public void setItens(List<Long> itens) {
         this.itens = itens;
-    }    
+    }
+
+	public LocalDate getDataAluguel() {
+		return dataAluguel;
+	}
+
+	public void setDataAluguel(LocalDate dataAluguel) {
+		this.dataAluguel = dataAluguel;
+	}
+
+	public LocalDate getDataDevolucao() {
+		return dataDevolucao;
+	}
+
+	public void setDataDevolucao(LocalDate dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
+	}
 
 }

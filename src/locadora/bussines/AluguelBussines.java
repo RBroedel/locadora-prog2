@@ -1,7 +1,6 @@
 package locadora.bussines;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import locadora.entity.Aluguel;
 
@@ -10,8 +9,8 @@ public class AluguelBussines {
     public boolean cadastrarAluguel( Long idCliente, boolean vip, boolean bairroCentro, List<Long> itens, List<Aluguel> alugueis) throws Exception{
 
         var aluguel = new Aluguel();
-        Date dataAluguel = new Date();
-        Date dataDevolucao = new Date();
+        LocalDate dataAluguel = LocalDate.now();
+        LocalDate dataDevolucao = dataAluguel.plusDays(5);
         Double valor = 10.;
         Double valorTotal = valor*itens.size();
         if (vip){
@@ -22,7 +21,6 @@ public class AluguelBussines {
         } else{
             valorTotal += 15.;
         }
-        LocalDateTime.from(dataDevolucao.toInstant()).plusDays(5);
         aluguel.setId( getLastId( alugueis ) + 1 ); 
         aluguel.setIdCliente( idCliente );
         aluguel.setDataAluguel(dataAluguel);
