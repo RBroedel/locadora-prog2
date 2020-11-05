@@ -1,5 +1,6 @@
 package locadora.menu;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,36 +22,108 @@ public class CompraMenu {
         Long idCliente = sc1.nextLong();
 
         int opt = 0;
+        List<Long> itemsToCompra = new ArrayList<Long>();
+
         do {
-            System.out.println("Qual produto você quer comprar?\n1 - Livro\n 2 - DVD\n 3 - Revista\n");
-            int tipo = sc1.nextInt();
+            System.out.println("Qual produto você quer comprar?\n 1 - Livro\n 2 - DVD\n 3 - Revista\n");
+            int inputTipo = sc1.nextInt();
 
-            if (Tipo.Livro.getCode() == tipo) {
+            // TIPO LIVRO
+            if (Tipo.LIVRO.getCode() == inputTipo) {
                 items.forEach(item -> {
-                    if (1 == Tipo.Livro.getCode()) {
-                        System.out.println(item.getId().toString() + " - " + item.getTitulo().toString());
+                    if (item.getTipo().getCode() == Tipo.LIVRO.getCode() && item.getEstoque() > 0
+                            && !itemsToCompra.contains(new ArrayList<Long>().add(item.getId()))) {
+                        System.out.println("ID: " + item.getId() + " - Título do LIVRO: " + item.getTitulo()
+                                + " - Tem no estoque: " + item.getEstoque());
                     }
                 });
-                System.out.println("comprou livro");
 
-            } else if (Tipo.Dvd.getCode() == tipo) {
-                items.forEach(item -> {
-                    if (2 == Tipo.Dvd.getCode()) {
-                        System.out.println(item.getId().toString() + " - " + item.getTitulo().toString());
-                    }
-                });
-                System.out.println("comprou DVD");
+                int optComprar = 0;
+                do {
+                    System.out.println("Digite o ID do LIVRO que quer comprar e dê um Enter: ");
+                    Long idCompra = sc1.nextLong();
+                    itemsToCompra.add(idCompra);
+                    items.forEach(item -> {
+                        if (item.getId() == idCompra) {
+                            item.setEstoque(item.getEstoque() - 1);
+                        }
+                        ;
+                    });
+                    System.out.println("Deseja comprar outro Livro?\n 1 - sim\n 2 - nao");
+                    optComprar = sc1.nextInt();
+                } while (optComprar != 2);
 
-            } else if (Tipo.Revista.getCode() == tipo) {
-                items.forEach(item -> {
-                    if (3 == Tipo.Revista.getCode()) {
-                        System.out.println(item.getId().toString() + " - " + item.getTitulo().toString());
-                    }
-                });
-                System.out.println("comprou Revista");
+                if (compraBusiness.comprarItem(idCliente, items, itemsToCompra)) {
+                    System.out.println("LIVRO comprado com sucesso!");
+                } else {
+                    System.out.println("LIVRO não foi comprado");
+                }
             }
-            System.out.println("Deseja comprar mais alguma coisa?\n1 - nao\n2 - sim");
+            // TIPO DVD
+            else if (Tipo.DVD.getCode() == inputTipo) {
+                items.forEach(item -> {
+                    if (item.getTipo().getCode() == Tipo.DVD.getCode() && item.getEstoque() > 0
+                            && !itemsToCompra.contains(new ArrayList<Long>().add(item.getId()))) {
+                        System.out.println("ID: " + item.getId() + " - Título do DVD: " + item.getTitulo()
+                                + " - Tem no estoque: " + item.getEstoque());
+                    }
+                });
+
+                int optComprar = 0;
+                do {
+                    System.out.println("Digite o ID do DVD que quer comprar e dê um Enter: ");
+                    Long idCompra = sc1.nextLong();
+                    itemsToCompra.add(idCompra);
+                    items.forEach(item -> {
+                        if (item.getId() == idCompra) {
+                            item.setEstoque(item.getEstoque() - 1);
+                        }
+                        ;
+                    });
+                    System.out.println("Deseja comprar outro DVD?\n 1 - sim\n 2 - nao");
+                    optComprar = sc1.nextInt();
+                } while (optComprar != 2);
+
+                if (compraBusiness.comprarItem(idCliente, items, itemsToCompra)) {
+                    System.out.println("DVD comprado com sucesso!");
+                } else {
+                    System.out.println("DVD não foi comprado");
+                }
+            }
+            // TIPO REVISTA
+            else if (Tipo.REVISTA.getCode() == inputTipo) {
+                items.forEach(item -> {
+                    if (item.getTipo().getCode() == Tipo.REVISTA.getCode() && item.getEstoque() > 0
+                            && !itemsToCompra.contains(new ArrayList<Long>().add(item.getId()))) {
+                        System.out.println("ID: " + item.getId() + " - Título do REVISTA: " + item.getTitulo()
+                                + " - Tem no estoque: " + item.getEstoque());
+                    }
+                });
+
+                int optComprar = 0;
+                do {
+                    System.out.println("Digite o ID do REVISTA que quer comprar e dê um Enter: ");
+                    Long idCompra = sc1.nextLong();
+                    itemsToCompra.add(idCompra);
+                    items.forEach(item -> {
+                        if (item.getId() == idCompra) {
+                            item.setEstoque(item.getEstoque() - 1);
+                        }
+                        ;
+                    });
+                    System.out.println("Deseja comprar outro REVISTA?\n 1 - sim\n 2 - nao");
+                    optComprar = sc1.nextInt();
+                } while (optComprar != 2);
+
+                if (compraBusiness.comprarItem(idCliente, items, itemsToCompra)) {
+                    System.out.println("REVISTA comprado com sucesso!");
+                } else {
+                    System.out.println("REVISTA não foi comprado");
+                }
+            }
+            System.out.println("Deseja comprar mais alguma compra?\n1 - nao\n2 - sim");
             opt = sc1.nextInt();
+
         } while (opt != 1);
 
         sc1 = new Scanner(System.in);
