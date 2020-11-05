@@ -20,37 +20,39 @@ public class CompraMenu {
         System.out.println("Escolha o cliente: ");
         Long idCliente = sc1.nextLong();
 
-        System.out.println("Qual produto você quer comprar?\n1 - Livro\n 2 - DVD\n 3 - Revista\n");
-        int tipo = sc1.nextInt();
+        int opt = 0;
+        do {
+            System.out.println("Qual produto você quer comprar?\n1 - Livro\n 2 - DVD\n 3 - Revista\n");
+            int tipo = sc1.nextInt();
 
-        if (Tipo.Livro.getCode() == tipo) {
+            if (Tipo.Livro.getCode() == tipo) {
+                items.forEach(item -> {
+                    if (1 == Tipo.Livro.getCode()) {
+                        System.out.println(item.getId().toString() + " - " + item.getTitulo().toString());
+                    }
+                });
+                System.out.println("comprou livro");
 
-            items.forEach(item -> {
-                if (item.getTipo() == Tipo.Livro) {
-                    System.out.println(item.getId() + " - " + item.getTitulo());
-                }
-            });
+            } else if (Tipo.Dvd.getCode() == tipo) {
+                items.forEach(item -> {
+                    if (2 == Tipo.Dvd.getCode()) {
+                        System.out.println(item.getId().toString() + " - " + item.getTitulo().toString());
+                    }
+                });
+                System.out.println("comprou DVD");
 
-            System.out.println("comprou livro");
+            } else if (Tipo.Revista.getCode() == tipo) {
+                items.forEach(item -> {
+                    if (3 == Tipo.Revista.getCode()) {
+                        System.out.println(item.getId().toString() + " - " + item.getTitulo().toString());
+                    }
+                });
+                System.out.println("comprou Revista");
+            }
+            System.out.println("Deseja comprar mais alguma coisa?\n1 - nao\n2 - sim");
+            opt = sc1.nextInt();
+        } while (opt != 1);
 
-        } else if (Tipo.Dvd.getCode() == tipo) {
-            items.forEach(item -> {
-                if (item.getTipo() == Tipo.Dvd) {
-                    System.out.println(item.getId() + " - " + item.getTitulo());
-                }
-            });
-
-            System.out.println("comprou DVD");
-
-        } else if (Tipo.Revista.getCode() == tipo) {
-            items.forEach(item -> {
-                if (item.getTipo() == Tipo.Revista) {
-                    System.out.println(item.getId() + " - " + item.getTitulo());
-                }
-            });
-
-            System.out.println("comprou Revista");
-        }
         sc1 = new Scanner(System.in);
     }
 }
