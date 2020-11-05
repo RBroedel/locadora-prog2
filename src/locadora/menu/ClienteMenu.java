@@ -9,9 +9,10 @@ import locadora.entity.Cliente;
 public class ClienteMenu {
 
 	ClienteBussines clienteBussines = new ClienteBussines();
-	Scanner sc1 = new Scanner(System.in);
 
 	public void cadastraCliente(List<Cliente> clientes) throws Exception {
+		Scanner sc1 = new Scanner(System.in);
+
 		System.out.print("Informe o Nome: ");
 		String name = sc1.nextLine();
 
@@ -24,10 +25,13 @@ public class ClienteMenu {
 		System.out.print("Informe se o Cliente é VIP (sim / nao): ");
 		String vip = sc1.nextLine();
 
-		if (clienteBussines.cadastraCliente(name, telefone, bairro, vip, clientes))
+		if (clienteBussines.cadastraCliente(name, telefone, bairro, vip, clientes)) {
 			System.out.println("Usuário salvo com sucesso!");
-		else
+		} else {
 			System.out.println("Não foi possível salvar o Usuário!");
+		}
+
+		sc1 = new Scanner( System.in );
 	}
 
 }

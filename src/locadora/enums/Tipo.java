@@ -2,7 +2,7 @@ package locadora.enums;
 
 public enum Tipo {
 
-	Livro( "LIVRO", 1 ), Dvd( "DVD", 2 ), Revista( "REVISTA", 3 );
+	LIVRO( "LIVRO", 1 ), DVD( "DVD", 2 ), REVISTA( "REVISTA", 3 ), TIPO_INVALIDO("INVALIDO", 4);
 
 	private String name;
 	private int code;
