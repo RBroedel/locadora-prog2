@@ -42,6 +42,10 @@ public class Item {
         this.estoque = estoque;
     }
 
+    public void reduzEstoque() {
+        this.estoque = this.estoque - 1;
+    }
+
     public Tipo getTipo() {
         return tipo;
     }
