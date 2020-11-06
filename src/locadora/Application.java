@@ -14,7 +14,7 @@ import locadora.menu.ColecaoMenu;
 
 public class Application {
 
-	public static void main( String[] arguments ) {
+	public static void main(String[] arguments) {
 		int opt = 0;
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		ClienteMenu clienteMenu = new ClienteMenu();
@@ -23,36 +23,32 @@ public class Application {
 		List<Colecao> colecoes = new ArrayList<Colecao>();
 		ColecaoMenu colecaoMenu = new ColecaoMenu();
 
-		Scanner sc1 = new Scanner( System.in );
+		Scanner sc1 = new Scanner(System.in);
 
 		do {
-			System.out.println( "1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Livro;" );
+			System.out.println("1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Item;");
 			opt = sc1.nextInt();
 
-			switch ( opt ) {
+			switch (opt) {
 				case 2:
 					try {
-						clienteMenu.cadastraCliente( clientes );
-					} catch ( Exception e ) {
-						System.out.println( e.getLocalizedMessage() );
-					}
-					break;
-				
-				case 3: 
-					try {
-						colecaoMenu.cadastraColecao(colecoes);
-					}catch(Exception e){
+						clienteMenu.cadastraCliente(clientes);
+					} catch (Exception e) {
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
-				case 4: 
+
+				case 3:
 					try {
-						if (itemMenu.cadastroItem( itens, colecoes ) == true){
-							System.out.println("Item cadastrado com sucesso!");
-						} else {
-							System.out.println("Item não foi cadastrado");
-						}
-					} catch (Exception e){
+						colecaoMenu.cadastraColecao(colecoes);
+					} catch (Exception e) {
+						System.out.println(e.getLocalizedMessage());
+					}
+					break;
+				case 4:
+					try {
+						itemMenu.cadastroItem(itens, colecoes);
+					} catch (Exception e) {
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
@@ -60,6 +56,6 @@ public class Application {
 					break;
 			}
 
-		} while( opt != 1 );
+		} while (opt != 1);
 	}
 }
