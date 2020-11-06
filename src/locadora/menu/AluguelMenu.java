@@ -22,59 +22,71 @@ public class AluguelMenu {
         boolean bairroCentro = false;
         boolean isValid = false;
 
-        clientes.forEach(cliente -> System.out.print(cliente.getId() + " - " + cliente.getNome() + "\n"));
-        System.out.print("\nEscolha o cliente: ");
+        clientes.forEach(cliente -> System.out.println(cliente.getId() + " - " + cliente.getNome()));
+        System.out.println("Escolha o cliente: ");
         Long idCliente = sc1.nextLong();
 
         for (Cliente cliente : clientes) {
-            if (idCliente == cliente.getId() && cliente.isVip()) {
-                vip = true;
-            }
-            if (idCliente == cliente.getId() && cliente.getBairro().toLowerCase().equals("centro")) {
-                bairroCentro = true;
-            }
             if (idCliente == cliente.getId()) {
+                if (cliente.isVip()) {
+                    vip = true;
+                }
+                if (cliente.getBairro().equalsIgnoreCase("centro")) {
+                    bairroCentro = true;
+                }
                 isValid = true;
             }
         }
+
         if (!isValid) {
-            throw new Exception("\nCliente inválido.");
+            throw new Exception("Cliente inválido.");
         }
 
-        System.out.print("\nÉ para entregar em domicilio? 1 - sim; 2 - nao \n");
+        System.out.println("É para entregar em domicilio? 1 - sim; 2 - nao ");
         Long entrega = sc1.nextLong();
-        if (entrega < 1 || entrega > 2) {
-            throw new Exception("\nOpcao invalida!");
+        boolean isEntregaDomicilio;
+        if (entrega == 1) {
+            isEntregaDomicilio = true;
+        } else if (entrega == 2) {
+            isEntregaDomicilio = false;
+        } else {
+            throw new Exception("Opcao invalida.");
         }
 
         while (opt == 1) {
+            System.out.println("Informa o Tipo(1 - Livro; 2 - DVD; 3 - Revista) : )");
+            int tipo = sc1.nextInt();
+
             itens.forEach(item -> {
-                if (item.getEstoque() != 0)
-                    System.out.print(item.getId().toString() + " - " + item.getTitulo().toString() + "\n");
+                if (item.getEstoque() != 0) {
+                    if (item.getTipo().getCode() == tipo) {
+                        System.out.println(item.getId().toString() + " - " + item.getTitulo().toString());
+                    }
+                }
             });
-            System.out.print("\nEscolha o item: ");
+            System.out.println("Escolha o item: ");
             long itemInput = sc1.nextLong();
             isValid = false;
             for (Item item : itens) {
-                if (item.getId() == itemInput && item.getEstoque() > 0) {
+                if (item.getId() == itemInput && item.getEstoque() > 0 && item.getTipo().getCode() == tipo) {
                     itensAluguel.add(itemInput);
                     item.setEstoque(item.getEstoque() - 1);
                     isValid = true;
                 }
             }
             if (!isValid) {
-                System.out.print("\nItem Indisponível.");
+                System.out.println("Item Indisponível.");
             }
-            System.out.print("\nDeseja adicionar outro item? 1 - Sim 2 - Nao\n");
+            System.out.println("Deseja adicionar outro item? 1 - Sim 2 - Nao\n");
             opt = sc1.nextInt();
         }
         if (itensAluguel.size() == 0) {
-            throw new Exception("\nNão há itens nesse aluguel");
+            throw new Exception("Não há itens nesse aluguel");
         }
-        if (aluguelBussines.cadastrarAluguel(idCliente, vip, bairroCentro, itensAluguel, alugueis, entrega))
-            System.out.println("\nAluguel salvo com sucesso!");
+        if (aluguelBussines.cadastrarAluguel(idCliente, vip, bairroCentro, itensAluguel, alugueis, isEntregaDomicilio))
+            System.out.println("Aluguel salvo com sucesso!");
         else
-            System.out.println("\nNão foi possível salvar o Aluguel!");
+            System.out.println("Não foi possível salvar o Aluguel!");
         sc1 = new Scanner(System.in);
     }
 
@@ -82,7 +94,7 @@ public class AluguelMenu {
         Scanner sc1 = new Scanner(System.in);
         LocalDate date = LocalDate.now();
 
-        System.out.print("\nAlugueis: \n");
+        System.out.println("Alugueis: ");
         for (Aluguel aluguel : alugueis) {
             System.out.print(aluguel.getId() + " - ");
             for (Cliente cliente : clientes) {
@@ -91,31 +103,20 @@ public class AluguelMenu {
                 }
             }
             Double valor = aluguel.getValor();
-            if (aluguel.getDataDevolucao().compareTo(date) < 0) {
+            if (aluguel.getDataDevolucao().isAfter(date)) {
                 valor = aluguel.getValor() + (aluguel.getItens().size() * 5);
             }
-
-            System.out.print(aluguel.getDataAluguel() + " - " + aluguel.getDataDevolucao() + " - R$ " + valor);
+            System.out.println(aluguel.getDataAluguel() + " - " + aluguel.getDataDevolucao() + " - R$ " + valor);
 
         }
 
-        System.out.print("\n Escolha qual aluguel está sendo devolvido: ");
+        System.out.println("Escolha qual aluguel está sendo devolvido: ");
         Long idAluguel = sc1.nextLong();
 
-        for (Aluguel aluguel : alugueis) {
-            int i = 0;
-            if (idAluguel == aluguel.getId()) {
-                for (Long itemAluguel : aluguel.getItens()) {
-                    for (Item itemEstoque : itens) {
-                        if (itemAluguel == itemEstoque.getId()) {
-                            itemEstoque.setEstoque(itemEstoque.getEstoque() + 1);
-                        }
-                    }
-                }
-                alugueis.remove(i);
-            }
-            i++;
-        }
+        if (aluguelBussines.confirmaDevolucao(alugueis, idAluguel, itens))
+            System.out.println("Devolucao realizada com sucesso!");
+        else
+            System.out.println("Não foi possível concluir devolucao");
         sc1 = new Scanner(System.in);
 
     }
