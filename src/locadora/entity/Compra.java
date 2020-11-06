@@ -1,12 +1,12 @@
 package locadora.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Compra {
     private Long id;
     private Long idCliente;
-    private Date dtCompra;
+    private LocalDate dataCompra;
     private Double valor;
     private List<Long> itens;
 
@@ -26,14 +26,6 @@ public class Compra {
         this.idCliente = idCliente;
     }
 
-    public Date getDtCompra() {
-        return dtCompra;
-    }
-
-    public void setDtCompra(Date dtCompra) {
-        this.dtCompra = dtCompra;
-    }
-
     public Double getValor() {
         return valor;
     }
@@ -44,6 +36,14 @@ public class Compra {
 
     public List<Long> getItens() {
         return itens;
+    }
+
+    public LocalDate getDataCompra() {
+        return dataCompra;
+    }
+
+    public void setDataCompra(LocalDate dataCompra) {
+        this.dataCompra = dataCompra;
     }
 
     public void setItens(List<Long> itens) {

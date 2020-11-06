@@ -22,7 +22,7 @@ public class ClienteMenu {
 		System.out.print("Informe o Bairro do endereço: ");
 		String bairro = sc1.nextLine();
 
-		System.out.print("Informe se o Cliente é VIP (sim / nao): ");
+		System.out.print("Informe se o Cliente é VIP ( sim / nao): ");
 		String vip = sc1.nextLine();
 
 		if (clienteBussines.cadastraCliente(name, telefone, bairro, vip, clientes)) {

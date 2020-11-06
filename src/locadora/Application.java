@@ -35,7 +35,7 @@ public class Application {
 
 		do {
 			System.out.println(
-					"1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Livro; 5 - Realizar Compras; 6 - Aluguel de Item; 7 - Devolução de itens");
+					"1 - Sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Item; 5 - Realizar Compras; 6 - Aluguel de Item; 7 - Devolução de itens");
 			opt = sc1.nextInt();
 
 			switch (opt) {
