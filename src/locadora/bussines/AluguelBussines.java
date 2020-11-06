@@ -5,16 +5,14 @@ import java.util.List;
 import locadora.entity.Aluguel;
 import locadora.entity.Item;
 
-
 public class AluguelBussines {
     private static final Double VALOR = 10.0;
 
-    public boolean cadastrarAluguel(Long idCliente, boolean vip, boolean bairroCentro, List<Long> itens,
-            List<Aluguel> alugueis, boolean isEntregaDomicilio) throws Exception {
+    public boolean cadastrarAluguel(Long idCliente, boolean vip, boolean bairroCentro, List<Long> itensAluguel,
+            List<Aluguel> alugueis, boolean isEntregaDomicilio, List<Item> itensEstoque) throws Exception {
         var aluguel = new Aluguel();
         LocalDate dataAluguel = LocalDate.now();
-        LocalDate dataDevolucao = dataAluguel.plusDays(5);
-        Double valorTotal = VALOR * itens.size();
+        Double valorTotal = VALOR * itensAluguel.size();
         if (vip) {
             valorTotal = valorTotal - (valorTotal * 0.05);
         }
@@ -25,12 +23,17 @@ public class AluguelBussines {
                 valorTotal += 15.;
             }
         }
+        for (Item item : itensEstoque) {
+            if (itensAluguel.contains(item.getId())) {
+                item.setEstoque(item.getEstoque() - 1);
+            }
+        }
         aluguel.setId(getLastId(alugueis) + 1);
         aluguel.setIdCliente(idCliente);
         aluguel.setDataAluguel(dataAluguel);
-        aluguel.setDataDevolucao(dataDevolucao);
         aluguel.setValor(valorTotal);
-        aluguel.setItens(itens);
+        aluguel.setItens(itensAluguel);
+        System.out.println("Valor total do aluguel: " + valorTotal);
 
         alugueis.add(aluguel);
         return true;
@@ -48,7 +51,7 @@ public class AluguelBussines {
                         }
                     }
                 }
-                alugueis.remove(i);
+                aluguel.setDataDevolucao(LocalDate.now());
             }
             i++;
         }
