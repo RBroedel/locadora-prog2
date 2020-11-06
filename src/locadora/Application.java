@@ -52,11 +52,7 @@ public class Application {
 					break;
 				case 4:
 					try {
-						if (itemMenu.cadastroItem(itens, colecoes) == true) {
-							System.out.println("Item cadastrado com sucesso!");
-						} else {
-							System.out.println("Item não foi cadastrado");
-						}
+						itemMenu.cadastroItem(itens, colecoes);
 					} catch (Exception e) {
 						System.out.println(e.getLocalizedMessage());
 					}
