@@ -1,6 +1,7 @@
 package locadora.bussines;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import locadora.entity.Compra;
@@ -13,12 +14,23 @@ public class CompraBusiness {
 
         var compra = new Compra();
         LocalDate dataCompra = LocalDate.now();
-
+        final Double valorColecao = 200.0;
         Double valorTotal = 0.0;
+        List<Long> colecoes = new ArrayList<Long>();
 
         for (Item item : items) {
             if (itemsToCompra.contains(item.getId())) {
-                valorTotal += item.getValor();
+                if (item.getIdColecao() == 0) {
+                    valorTotal += item.getValor();
+                    item.setEstoque(item.getEstoque() - 1);
+                }
+                if (item.getIdColecao() != 0) {
+                    item.setEstoque(item.getEstoque() - 1);
+                    if (!colecoes.contains(item.getIdColecao())) {
+                        valorTotal += valorColecao;
+                        colecoes.add(item.getIdColecao());
+                    }
+                }
             }
         }
 
