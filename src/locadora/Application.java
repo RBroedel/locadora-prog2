@@ -8,10 +8,12 @@ import java.util.Scanner;
 import locadora.entity.Item;
 import locadora.entity.Cliente;
 import locadora.entity.Colecao;
-import locadora.entity.Aluguel;
+import locadora.entity.Compra;
 import locadora.menu.ClienteMenu;
 import locadora.menu.ItemMenu;
 import locadora.menu.ColecaoMenu;
+import locadora.menu.CompraMenu;
+import locadora.entity.Aluguel;
 import locadora.menu.AluguelMenu;
 
 public class Application {
@@ -24,6 +26,8 @@ public class Application {
 		ItemMenu itemMenu = new ItemMenu();
 		List<Colecao> colecoes = new ArrayList<Colecao>();
 		ColecaoMenu colecaoMenu = new ColecaoMenu();
+		List<Compra> compras = new ArrayList<Compra>();
+		CompraMenu compraMenu = new CompraMenu();
 		List<Aluguel> aluguel = new ArrayList<Aluguel>();
 		AluguelMenu aluguelMenu = new AluguelMenu();
 
@@ -31,7 +35,7 @@ public class Application {
 
 		do {
 			System.out.println(
-					"1 - sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Livro; 6 - Aluguel de Item; 7 - Devolução de itens");
+					"1 - Sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Item; 5 - Realizar Compras; 6 - Aluguel de Item; 7 - Devolução de itens");
 			opt = sc1.nextInt();
 
 			switch (opt) {
@@ -42,7 +46,6 @@ public class Application {
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
-
 				case 3:
 					try {
 						colecaoMenu.cadastraColecao(colecoes);
@@ -57,11 +60,17 @@ public class Application {
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
+				case 5:
+					try {
+						compraMenu.compraItem(compras, clientes, itens);
+					} catch (Exception e) {
+						System.out.println(e.getLocalizedMessage());
+					}
+					break;
 				case 6:
 					try {
 						aluguelMenu.aluguel(aluguel, clientes, itens);
 					} catch (Exception e) {
-
 						System.out.println(e.getLocalizedMessage());
 					}
 					break;
@@ -76,7 +85,7 @@ public class Application {
 				default:
 					break;
 			}
-			sc1 = new Scanner( System.in );
-		} while( opt != 1 );
+			sc1 = new Scanner(System.in);
+		} while (opt != 1);
 	}
 }

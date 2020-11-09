@@ -12,7 +12,7 @@ public class Cliente {
 		return id;
 	}
 
-	public void setId( long id ) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -20,7 +20,7 @@ public class Cliente {
 		return nome;
 	}
 
-	public void setNome( String nome ) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
@@ -28,7 +28,7 @@ public class Cliente {
 		return telefone;
 	}
 
-	public void setTelefone( String telefone ) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
@@ -36,7 +36,7 @@ public class Cliente {
 		return bairro;
 	}
 
-	public void setBairro( String bairro ) {
+	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
 
@@ -44,7 +44,7 @@ public class Cliente {
 		return vip;
 	}
 
-	public void setVip( boolean vip ) {
+	public void setVip(boolean vip) {
 		this.vip = vip;
 	}
 

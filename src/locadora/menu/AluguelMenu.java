@@ -1,15 +1,14 @@
 package locadora.menu;
 
-import java.util.List;
-import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 import locadora.bussines.AluguelBussines;
 import locadora.entity.Aluguel;
 import locadora.entity.Cliente;
 import locadora.entity.Item;
-
 
 public class AluguelMenu {
 
@@ -48,22 +47,22 @@ public class AluguelMenu {
         boolean isEntregaDomicilio;
         if (entrega == 1) {
             isEntregaDomicilio = true;
-        }else if (entrega == 2){
+        } else if (entrega == 2) {
             isEntregaDomicilio = false;
-        }else{
+        } else {
             throw new Exception("Opcao invalida.");
         }
 
         while (opt == 1) {
             System.out.println("Informa o Tipo(1 - Livro; 2 - DVD; 3 - Revista) : )");
             int tipo = sc1.nextInt();
-            
+
             itens.forEach(item -> {
-                if (item.getEstoque() != 0){
-                    if (item.getTipo().getCode() == tipo){
+                if (item.getEstoque() != 0) {
+                    if (item.getTipo().getCode() == tipo) {
                         System.out.println(item.getId().toString() + " - " + item.getTitulo().toString());
-                    }                    
-                }                   
+                    }
+                }
             });
             System.out.println("Escolha o item: ");
             long itemInput = sc1.nextLong();
@@ -84,7 +83,7 @@ public class AluguelMenu {
         if (itensAluguel.size() == 0) {
             throw new Exception("Não há itens nesse aluguel");
         }
-        if (aluguelBussines.cadastrarAluguel(idCliente, vip, bairroCentro, itensAluguel, alugueis, isEntregaDomicilio ))
+        if (aluguelBussines.cadastrarAluguel(idCliente, vip, bairroCentro, itensAluguel, alugueis, isEntregaDomicilio))
             System.out.println("Aluguel salvo com sucesso!");
         else
             System.out.println("Não foi possível salvar o Aluguel!");
@@ -112,7 +111,7 @@ public class AluguelMenu {
         }
 
         System.out.println("Escolha qual aluguel está sendo devolvido: ");
-        Long idAluguel = sc1.nextLong();      
+        Long idAluguel = sc1.nextLong();
 
         if (aluguelBussines.confirmaDevolucao(alugueis, idAluguel, itens))
             System.out.println("Devolucao realizada com sucesso!");

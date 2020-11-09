@@ -1,10 +1,9 @@
 package locadora.entity;
 
-
 public class Colecao {
     private long id;
-	private String titulo;
-	private Double valor;
+    private String titulo;
+    private Double valor;
 
     public long getId() {
         return id;
