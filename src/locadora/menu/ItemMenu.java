@@ -18,7 +18,7 @@ public class ItemMenu {
         System.out.println("Informa o Titulo: ");
         String titulo = sc1.nextLine();
 
-        System.out.println("Informa o Tipo(1 - Livro; 2 - DVD; 3 - Revista): ");
+        System.out.println("Informa o Tipo:\n 1 - Livro;\n 2 - DVD;\n 3 - Revista;");
         int tipo = sc1.nextInt();
         Long idColecao = 0L;
 
