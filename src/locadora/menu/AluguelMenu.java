@@ -59,7 +59,7 @@ public class AluguelMenu {
             int tipo = sc1.nextInt();
             isEstoque = false;
             for (Item item : itens) {
-                if (!itensAluguel.contains(item.getId())) {
+                if (!itensAluguel.contains(item.getId()) && item.getEstoque() > 0) {
                     if (item.getTipo().getCode() == tipo) {
                         System.out.println(item.getId().toString() + " - " + item.getTitulo().toString());
                         isEstoque = true;
