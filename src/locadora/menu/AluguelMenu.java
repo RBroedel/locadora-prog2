@@ -59,7 +59,7 @@ public class AluguelMenu {
             int tipo = sc1.nextInt();
             isEstoque = false;
             for (Item item : itens) {
-                if (!itensAluguel.contains(item.getEstoque())) {
+                if (!itensAluguel.contains(item.getId())) {
                     if (item.getTipo().getCode() == tipo) {
                         System.out.println(item.getId().toString() + " - " + item.getTitulo().toString());
                         isEstoque = true;
@@ -111,7 +111,7 @@ public class AluguelMenu {
                     }
                 }
                 Double valor = aluguel.getValor();
-                if (aluguel.getDataDevolucao().plusDays(5).isBefore(date)) {
+                if (!aluguel.getDataDevolucao().plusDays(5).isAfter(date)) {
                     valor = aluguel.getValor() + (aluguel.getItens().size() * 5);
                 }
                 System.out.println(aluguel.getDataAluguel() + " - R$ " + valor);
