@@ -9,7 +9,6 @@ public class Item {
     private Long estoque;
     private Tipo tipo;
     private Long idColecao;
-    private int tipoItem;
 
     public Long getId() {
         return id;
@@ -61,13 +60,5 @@ public class Item {
 
     public void setIdColecao(Long idColecao) {
         this.idColecao = idColecao;
-    }
-
-    public int getTipoItem() {
-        return tipoItem;
-    }
-
-    public void setTipoItem(int tipoItem) {
-        this.tipoItem = tipoItem;
     }
 }
