@@ -6,26 +6,26 @@ import java.time.LocalDate;
 
 public class Aluguel {
 
-	private long id;
-	private long idCliente;
+	private Long id;
+	private Long idCliente;
 	private LocalDate dataAluguel;
 	private LocalDate dataDevolucao;
 	private Double valor;
 	private List<Long> itens;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public long getIdCliente() {
+	public Long getIdCliente() {
 		return idCliente;
 	}
 
-	public void setIdCliente(long idCliente) {
+	public void setIdCliente(Long idCliente) {
 		this.idCliente = idCliente;
 	}
 

@@ -27,6 +27,8 @@ public class ItemBusiness {
 
         if (idColecao != 0) {
             item.setIdColecao(idColecao);
+        }else {
+            item.setIdColecao(0L);
         }
 
         itens.add(item);
@@ -58,7 +60,7 @@ public class ItemBusiness {
     }
 
     private Long getLastId(List<Item> itens) {
-        if (itens.size() > 0) {
+        if (!itens.isEmpty() ) {
             return itens.get(itens.size() - 1).getId();
         }
 

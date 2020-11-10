@@ -23,6 +23,10 @@ public class AluguelMenu {
         boolean isValid = false;
         boolean isEstoque = false;
 
+        if (clientes.isEmpty()) {
+            throw new Exception("O sistema não possui clientes!");
+        }
+
         clientes.forEach(cliente -> System.out.println(cliente.getId() + " - " + cliente.getNome()));
         System.out.println("Escolha o cliente: ");
         Long idCliente = sc1.nextLong();
@@ -101,9 +105,12 @@ public class AluguelMenu {
         Scanner sc1 = new Scanner(System.in);
         LocalDate date = LocalDate.now();
 
+        boolean hasAlugueisAtivos = false;        
+
         System.out.println("Alugueis: ");
         for (Aluguel aluguel : alugueis) {
             if (aluguel.getDataDevolucao() == null) {
+                hasAlugueisAtivos = true;
                 System.out.print(aluguel.getId() + " - ");
                 for (Cliente cliente : clientes) {
                     if (aluguel.getIdCliente() == cliente.getId()) {
@@ -111,15 +118,31 @@ public class AluguelMenu {
                     }
                 }
                 Double valor = aluguel.getValor();
-                if (!aluguel.getDataDevolucao().plusDays(5).isAfter(date)) {
+                if (!aluguel.getDataAluguel().plusDays(5).isAfter(date)) {
                     valor = aluguel.getValor() + (aluguel.getItens().size() * 5);
                 }
                 System.out.println(aluguel.getDataAluguel() + " - R$ " + valor);
             }
         }
 
+        if (!hasAlugueisAtivos) {
+            throw new Exception("Sem Alugueis ativos no momento!");
+        }
+
         System.out.println("Escolha qual aluguel está sendo devolvido: ");
         Long idAluguel = sc1.nextLong();
+
+        boolean isIdValid = false;
+
+        for (Aluguel aluguel : alugueis) {
+            if (aluguel.getId().equals(idAluguel)) {
+                isIdValid = true;
+            }
+        }
+
+        if (!isIdValid) {
+            throw new Exception("Aluguel inválido!");
+        }
 
         if (aluguelBussines.confirmaDevolucao(alugueis, idAluguel, itens))
             System.out.println("Devolucao realizada com sucesso!");
