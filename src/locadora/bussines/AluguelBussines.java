@@ -59,7 +59,7 @@ public class AluguelBussines {
     }
 
     private Long getLastId(List<Aluguel> alugueis) {
-        if (alugueis.size() > 0)
+        if (!alugueis.isEmpty())
             return alugueis.get(alugueis.size() - 1).getId();
 
         return Long.parseLong("0");

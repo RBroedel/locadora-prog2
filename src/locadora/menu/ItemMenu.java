@@ -18,9 +18,13 @@ public class ItemMenu {
         System.out.println("Informa o Titulo: ");
         String titulo = sc1.nextLine();
 
-        System.out.println("Informa o Tipo:\n 1 - Livro;\n 2 - DVD;\n 3 - Revista;");
+        System.out.println("Informa o Tipo(1 - Livro; 2 - DVD; 3 - Revista):");
         int tipo = sc1.nextInt();
         Long idColecao = 0L;
+
+        if (tipo < 1 || tipo > 3) { 
+            throw new Exception("Opção inválida!");
+        }
 
         if (Tipo.LIVRO.getCode() == tipo) {
             System.out.println("Informe uma coleção para este livro:");
@@ -29,6 +33,10 @@ public class ItemMenu {
                 System.out.println(colecao.getId() + " - " + colecao.getTitulo());
             });
             idColecao = sc1.nextLong();
+        }
+
+        if (idColecao < 0 || idColecao > colecoes.size()) { 
+            throw new Exception("Opção inválida!");
         }
 
         if (itembussines.cadastraItem(titulo, idColecao, tipo, itens, colecoes)) {

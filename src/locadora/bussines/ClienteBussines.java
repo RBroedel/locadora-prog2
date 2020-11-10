@@ -39,7 +39,7 @@ public class ClienteBussines {
 	}
 
 	private Long getLastId(List<Cliente> clientes) {
-		if (clientes.size() > 0)
+		if (!clientes.isEmpty())
 			return clientes.get(clientes.size() - 1).getId();
 
 		return Long.parseLong("0");

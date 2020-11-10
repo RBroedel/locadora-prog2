@@ -5,17 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import locadora.entity.Item;
+import locadora.entity.Aluguel;
 import locadora.entity.Cliente;
 import locadora.entity.Colecao;
 import locadora.entity.Compra;
+import locadora.entity.Item;
+import locadora.menu.AluguelMenu;
 import locadora.menu.ClienteMenu;
-import locadora.menu.ItemMenu;
 import locadora.menu.ColecaoMenu;
 import locadora.menu.CompraMenu;
-import locadora.entity.Aluguel;
-import locadora.menu.AluguelMenu;
-
+import locadora.menu.ItemMenu;
 public class Application {
 
 	public static void main(String[] arguments) {
@@ -35,7 +34,7 @@ public class Application {
 
 		do {
 			System.out.println(
-					"1 - Sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Item; 5 - Realizar Compras; 6 - Aluguel de Item; 7 - Devolução de itens");
+					"1 - Sair; 2 - Cadastrar Cliente; 3 - Cadastrar Colecao; 4 - Cadastrar Item; 5 - Realizar Compras; 6 - Aluguar de Item; 7 - Devolver Item");
 			opt = sc1.nextInt();
 
 			switch (opt) {

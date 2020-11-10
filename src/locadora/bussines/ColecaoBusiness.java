@@ -28,7 +28,7 @@ public class ColecaoBusiness {
     }
 
     private Long getLastId(List<Colecao> colecoes) {
-        if (colecoes.size() > 0)
+        if (!colecoes.isEmpty())
             return colecoes.get(colecoes.size() - 1).getId();
 
         return Long.parseLong("0");

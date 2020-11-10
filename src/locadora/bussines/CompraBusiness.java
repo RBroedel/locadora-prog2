@@ -51,7 +51,7 @@ public class CompraBusiness {
     }
 
     private Long getLastId(List<Compra> compras) {
-        if (compras.size() > 0)
+        if (!compras.isEmpty())
             return compras.get(compras.size() - 1).getId();
 
         return Long.parseLong("0");
