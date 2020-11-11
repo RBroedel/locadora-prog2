@@ -31,7 +31,7 @@ public class CompraMenu {
 
         clientes.forEach(cliente -> System.out
                 .println(cliente.getId() + " - " + cliente.getNome() + " - " + cliente.getBairro()));
-        System.out.println("Escolha o cliente: ");
+        System.out.println("Escolha o cliente digitando o id: ");
         Long idCliente = sc1.nextLong();
 
         for (Cliente cliente : clientes) {
@@ -46,16 +46,27 @@ public class CompraMenu {
             }
         }
         if (!isValid) {
-            throw new Exception("Cliente inválido.");
+            throw new Exception("Cliente invalido.");
+        }
+
+        System.out.println("Entregar em domicilio? ( 1 - Sim; 2 - Nao )");
+        int entrega = sc1.nextInt();
+        boolean isEntregaDomicilio;
+        if (entrega == 1) {
+            isEntregaDomicilio = true;
+        } else if (entrega == 2) {
+            isEntregaDomicilio = false;
+        } else {
+            throw new Exception("Opcao invalida.");
         }
 
         int opt = 1;
         List<Long> itensToCompra = new ArrayList<Long>();
         while (opt == 1) {
-            System.out.println("Informa o Tipo(1 - Livro; 2 - DVD; 3 - Revista):");
+            System.out.println("Informa o tipo digitando o id: ( 1 - Livro; 2 - DVD; 3 - Revista ):");
             int tipo = sc1.nextInt();
-            if (tipo < 1 && tipo > 3) {
-                throw new Exception("Tipo inválido!");
+            if (tipo < 1 || tipo > 3) {
+                throw new Exception("Tipo invalido!");
             }
 
             hasEstoque = false;
@@ -67,7 +78,7 @@ public class CompraMenu {
                 }
             }
             if (hasEstoque) {
-                System.out.println("Escolha o item: ");
+                System.out.println("Escolha o item digitando seu id: ");
                 long itemInput = sc1.nextLong();
                 isValid = false;
                 for (Item item : items) {
@@ -76,7 +87,8 @@ public class CompraMenu {
                         isValid = true;
                         if (!item.getIdColecao().equals(0L) && item.getTipo().equals(Tipo.LIVRO)) {
                             for (Item item2 : items) {
-                                if (item2.getIdColecao().equals(item.getIdColecao()) && !itensToCompra.contains(item2.getId())) {
+                                if (item2.getIdColecao().equals(item.getIdColecao())
+                                        && !itensToCompra.contains(item2.getId())) {
                                     itensToCompra.add(item2.getId());
                                 }
                             }
@@ -85,13 +97,13 @@ public class CompraMenu {
                 }
 
                 if (!isValid) {
-                    System.out.println("Item Indisponível.");
+                    System.out.println("Item indisponivel.");
                 }
             } else {
-                System.out.println("Não há itens nessa categoria!");
+                System.out.println("Não ha itens nessa categoria!");
             }
 
-            System.out.println("Deseja adicionar outro item? 1 - Sim; 2 - Não;");
+            System.out.println("Deseja adicionar outro item? ( 1 - Sim; 2 - Nao) ");
             opt = sc1.nextInt();
             if (opt < 1 || opt > 2) {
                 throw new Exception("Opção invalida!");
@@ -99,13 +111,14 @@ public class CompraMenu {
 
         }
         if (itensToCompra.isEmpty()) {
-            throw new Exception("Não há itens nesse Compra");
+            throw new Exception("Nao ha itens nessa Compra");
         }
 
-        if (compraBusiness.comprarItem(idCliente, vip, bairroCentro, items, compras, itensToCompra)) {
-            System.out.println("Compra salvo com sucesso!");
+        if (compraBusiness.comprarItem(idCliente, vip, bairroCentro, items, compras, itensToCompra,
+                isEntregaDomicilio)) {
+            System.out.println("Compra realizada com sucesso!");
         } else {
-            System.out.println("Não foi possível salvar o Compra!");
+            System.out.println("Nao foi possivel realizar a Compra!");
         }
 
         sc1 = new Scanner(System.in);

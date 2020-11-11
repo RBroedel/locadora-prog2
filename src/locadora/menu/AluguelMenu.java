@@ -24,7 +24,7 @@ public class AluguelMenu {
         boolean isEstoque = false;
 
         if (clientes.isEmpty()) {
-            throw new Exception("O sistema não possui clientes!");
+            throw new Exception("O sistema nao possui clientes!");
         }
 
         clientes.forEach(cliente -> System.out.println(cliente.getId() + " - " + cliente.getNome()));
@@ -44,10 +44,10 @@ public class AluguelMenu {
         }
 
         if (!isValid) {
-            throw new Exception("Cliente inválido.");
+            throw new Exception("Cliente invalido.");
         }
 
-        System.out.println("É para entregar em domicilio? 1 - sim; 2 - nao ");
+        System.out.println("Entregar em domicilio? ( 1 - Sim; 2 - Nao )");
         Long entrega = sc1.nextLong();
         boolean isEntregaDomicilio;
         if (entrega == 1) {
@@ -59,7 +59,7 @@ public class AluguelMenu {
         }
 
         while (opt == 1) {
-            System.out.println("Informa o Tipo(1 - Livro; 2 - DVD; 3 - Revista) : )");
+            System.out.println("Informa o Tipo: ( 1 - Livro; 2 - DVD; 3 - Revista )");
             int tipo = sc1.nextInt();
             isEstoque = false;
             for (Item item : itens) {
@@ -81,23 +81,23 @@ public class AluguelMenu {
                     }
                 }
                 if (!isValid) {
-                    System.out.println("Item Indisponível.");
+                    System.out.println("Item indisponivel.");
                 }
             } else {
-                System.out.println("Não há itens dessa categoria disponíveis.");
+                System.out.println("Nao ha itens dessa categoria disponiveis.");
 
             }
-            System.out.println("Deseja adicionar outro item? 1 - Sim 2 - Nao\n");
+            System.out.println("Deseja adicionar outro item?( 1 - Sim 2 - Nao )");
             opt = sc1.nextInt();
         }
         if (itensAluguel.size() == 0) {
-            throw new Exception("Não há itens nesse aluguel");
+            throw new Exception("Nao ha itens nesse aluguel");
         }
         if (aluguelBussines.cadastrarAluguel(idCliente, vip, bairroCentro, itensAluguel, alugueis, isEntregaDomicilio,
                 itens))
             System.out.println("Aluguel salvo com sucesso!");
         else
-            System.out.println("Não foi possível salvar o Aluguel!");
+            System.out.println("Nao foi possível salvar o Aluguel!");
         sc1 = new Scanner(System.in);
     }
 
@@ -105,7 +105,7 @@ public class AluguelMenu {
         Scanner sc1 = new Scanner(System.in);
         LocalDate date = LocalDate.now();
 
-        boolean hasAlugueisAtivos = false;        
+        boolean hasAlugueisAtivos = false;
 
         System.out.println("Alugueis: ");
         for (Aluguel aluguel : alugueis) {
@@ -118,7 +118,7 @@ public class AluguelMenu {
                     }
                 }
                 Double valor = aluguel.getValor();
-                if (!aluguel.getDataAluguel().plusDays(5).isAfter(date)) {
+                if (!aluguel.getDataAluguel().plusDays(6).isAfter(date)) {
                     valor = aluguel.getValor() + (aluguel.getItens().size() * 5);
                 }
                 System.out.println(aluguel.getDataAluguel() + " - R$ " + valor);
@@ -129,7 +129,7 @@ public class AluguelMenu {
             throw new Exception("Sem Alugueis ativos no momento!");
         }
 
-        System.out.println("Escolha qual aluguel está sendo devolvido: ");
+        System.out.println("Escolha qual aluguel esta sendo devolvido: ");
         Long idAluguel = sc1.nextLong();
 
         boolean isIdValid = false;
@@ -141,13 +141,13 @@ public class AluguelMenu {
         }
 
         if (!isIdValid) {
-            throw new Exception("Aluguel inválido!");
+            throw new Exception("Aluguel invalido!");
         }
 
         if (aluguelBussines.confirmaDevolucao(alugueis, idAluguel, itens))
             System.out.println("Devolucao realizada com sucesso!");
         else
-            System.out.println("Não foi possível concluir devolucao");
+            System.out.println("Nao foi possível concluir devolucao");
         sc1 = new Scanner(System.in);
 
     }

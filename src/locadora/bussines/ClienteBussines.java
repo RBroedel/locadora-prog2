@@ -9,7 +9,7 @@ public class ClienteBussines {
 	public boolean cadastraCliente(String nome, String telefone, String bairro, String vip, List<Cliente> clientes)
 			throws Exception {
 		if (!isClienteValido(nome, telefone, bairro, vip))
-			throw new Exception("Dados inválidos.");
+			throw new Exception("Dados invalidos.");
 
 		var cliente = new Cliente();
 		cliente.setId(getLastId(clientes) + 1);

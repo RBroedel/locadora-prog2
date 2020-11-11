@@ -9,7 +9,7 @@ public class ColecaoBusiness {
 
     public boolean cadastraColecao(String titulo, List<Colecao> colecoes) throws Exception {
         if (!isColecaoValido(titulo))
-            throw new Exception("Dados inválidos");
+            throw new Exception("Dados invalidos");
 
         var colecao = new Colecao();
         colecao.setId(getLastId(colecoes) + 1);

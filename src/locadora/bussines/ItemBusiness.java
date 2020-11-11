@@ -8,14 +8,14 @@ import locadora.enums.Tipo;
 
 public class ItemBusiness {
     private static final Double VALOR_LIVRO = 50.0;
-    private static final Double VALOR_DVD = 30.0;
+    private static final Double VALOR_DVD = 20.0;
     private static final Double VALOR_REVISTA = 15.0;
 
     public boolean cadastraItem(String titulo, Long idColecao, int tipo, List<Item> itens, List<Colecao> colecoes)
             throws Exception {
 
         if (!isItemValido(titulo, idColecao, tipo, colecoes)) {
-            throw new Exception("Dados inválidos");
+            throw new Exception("Dados invalidos");
         }
 
         var item = new Item();
@@ -27,7 +27,7 @@ public class ItemBusiness {
 
         if (idColecao != 0) {
             item.setIdColecao(idColecao);
-        }else {
+        } else {
             item.setIdColecao(0L);
         }
 
@@ -60,7 +60,7 @@ public class ItemBusiness {
     }
 
     private Long getLastId(List<Item> itens) {
-        if (!itens.isEmpty() ) {
+        if (!itens.isEmpty()) {
             return itens.get(itens.size() - 1).getId();
         }
 
