@@ -22,27 +22,27 @@ public class ItemMenu {
         int tipo = sc1.nextInt();
         Long idColecao = 0L;
 
-        if (tipo < 1 || tipo > 3) { 
-            throw new Exception("Opção inválida!");
+        if (tipo < 1 || tipo > 3) {
+            throw new Exception("Opçao invalida!");
         }
 
         if (Tipo.LIVRO.getCode() == tipo) {
-            System.out.println("Informe uma coleção para este livro:");
-            System.out.println("0 - nenhuma coleção.");
+            System.out.println("Informe uma coleçao para este livro:");
+            System.out.println("0 - nenhuma coleçao.");
             colecoes.forEach(colecao -> {
                 System.out.println(colecao.getId() + " - " + colecao.getTitulo());
             });
             idColecao = sc1.nextLong();
         }
 
-        if (idColecao < 0 || idColecao > colecoes.size()) { 
-            throw new Exception("Opção inválida!");
+        if (idColecao < 0 || idColecao > colecoes.size()) {
+            throw new Exception("Opçao invalida!");
         }
 
         if (itembussines.cadastraItem(titulo, idColecao, tipo, itens, colecoes)) {
             System.out.println("Item cadastrado com sucesso!");
         } else {
-            System.out.println("Item não foi cadastrado");
+            System.out.println("Item nao foi cadastrado");
         }
 
         sc1 = new Scanner(System.in);

@@ -10,7 +10,7 @@ import locadora.entity.Item;
 public class CompraBusiness {
 
     public boolean comprarItem(Long idCliente, boolean vip, boolean bairroCentro, List<Item> items,
-            List<Compra> compras, List<Long> itemsToCompra) {
+            List<Compra> compras, List<Long> itemsToCompra, boolean isEntregaDomicilio) {
 
         var compra = new Compra();
         LocalDate dataCompra = LocalDate.now();
@@ -37,6 +37,13 @@ public class CompraBusiness {
         if (vip) {
             valorTotal = valorTotal - (valorTotal * 0.05);
         }
+        if (isEntregaDomicilio) {
+            if (bairroCentro) {
+                valorTotal += 10.;
+            } else {
+                valorTotal += 15.;
+            }
+        }
 
         compra.setId(getLastId(compras) + 1);
         compra.setIdCliente(idCliente);
@@ -46,7 +53,7 @@ public class CompraBusiness {
 
         compras.add(compra);
 
-        System.out.println("Valor total da compra: " + valorTotal);
+        System.out.println("Valor total da compra: R$" + valorTotal + " Data da compra: " + compra.getDataCompra());
         return true;
     }
 
