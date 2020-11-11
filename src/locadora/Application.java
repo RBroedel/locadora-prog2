@@ -1,4 +1,3 @@
-
 package locadora;
 
 import java.util.ArrayList;
@@ -15,6 +14,7 @@ import locadora.menu.ClienteMenu;
 import locadora.menu.ColecaoMenu;
 import locadora.menu.CompraMenu;
 import locadora.menu.ItemMenu;
+
 public class Application {
 
 	public static void main(String[] arguments) {
